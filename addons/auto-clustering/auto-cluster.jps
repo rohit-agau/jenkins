@@ -1,6 +1,6 @@
 type: update
 id: jenkins-auto-cluster
-baseUrl: https://raw.githubusercontent.com/jelastic-jps/jenkins/master
+baseUrl: https://raw.githubusercontent.com/rohit-agau/jenkins/master
 logo: /images/jenkins.png
 name: Jenkins DevOps Pack Cluster Logic
 
@@ -17,7 +17,7 @@ onInstall:
     - deploy:
         name: jenkins.war
         context: ROOT
-        archive: http://mirrors.jenkins-ci.org/war-stable/2.204.6/jenkins.war
+        archive: http://mirrors.jenkins-ci.org/war-stable/2.332.1/jenkins.war
     - installJenkinsPlugins
     - setupMaster
   - if (settings.cloned == 'true'): cleanupNodes
@@ -50,7 +50,7 @@ onAfterRedeployContainer[cp]:
 
 onAfterClone:
   install:
-    jps: ${baseUrl}/addons/auto-clustering/auto-cluster.jps?_r=${fn.random}
+    jps: ${baseUrl}/addons/auto-clustering/auto-cluster.yaml?_r=${fn.random}
     envName: ${event.response.env.envName}
     settings:
       cloned: 'true'
